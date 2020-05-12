@@ -1,0 +1,20 @@
+server:
+  port: 8087
+spring:
+  application:
+    name: auth-service
+eureka:
+  client:
+    service-url:
+      defaultZone:  http://127.0.0.1:10086/eureka
+    registry-fetch-interval-seconds: 10 #拉取服务时间，一般是有使用到feign才需要
+  instance:
+    lease-renewal-interval-in-seconds:  5 #每隔5秒发送一次心跳
+    lease-expiration-duration-in-seconds: 10  #10秒不发送心跳就过期
+leyou:
+  jwt:
+    secret: leyou@Login(Auth}*^31)&admin% # 登录校验的密钥
+    pubKeyPath: D:\ithmxm\tmp\rsa\rsa.pub # 公钥地址
+    priKeyPath: D:\ithmxm\tmp\rsa\rsa.pri # 私钥地址
+    expire: 30 # 过期时间,单位分钟
+    cookieName: LY_TOKEN

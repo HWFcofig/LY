@@ -1,0 +1,38 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: search-service
+  data:
+    elasticsearch:
+      cluster-name: elasticsearch
+      cluster-nodes: 192.168.26.128:9300
+  jackson:
+      default-property-inclusion: non_null # 配置json处理时忽略空值
+  rabbitmq:
+    host: 192.168.26.128
+    username: leyou
+    password: leyou
+    virtual-host: /leyou
+eureka:
+  client:
+    service-url:
+      defaultZone:  http://localhost:10086/eureka
+    registry-fetch-interval-seconds: 10 #10秒拉取一次服务
+  instance:
+    lease-renewal-interval-in-seconds:  30  # 每隔5秒发送一次心跳
+    lease-expiration-duration-in-seconds: 60  # 15秒不发送就过期
+#hystrix的超时时间
+hystrix:
+    command:
+        default:
+            execution:
+              timeout:
+                enabled: true
+              isolation:
+                    thread:
+                        timeoutInMilliseconds: 30000
+#ribbon的超时时间
+ribbon:
+  ReadTimeout: 30000
+  ConnectTimeout: 30000
